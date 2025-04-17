@@ -15,14 +15,14 @@ python -m zpd.gen_ices --dataset=<"gsm8k or ez_stance"> --ice_type="oracle" --nu
 
 ```bash
 python -m zpd.inference --dataset="dataset" 			# gsm8k or ez_stance
-						--model_name="model_name" 		# e.g. meta-llama/Llama-2-7b-hf
-						--icl_strategy="icl_strategy" 	# oralce, similarity, random, etc
-						--model_ckpt="model_ckpt"  		# if run inference with a finetuned model
-						--max_new_tokens=250 	   		# number of max generated tokens
-						--split="train, test, dev"
+			--model_name="model_name" 		# e.g. meta-llama/Llama-2-7b-hf
+			--icl_strategy="icl_strategy" 		# Oracle, similarity, random, etc
+			--model_ckpt="model_ckpt"  		# if run inference with a finetuned model
+			--max_new_tokens=250 	   		# number of max generated tokens
+			--split="train, test, dev"
 ```
 
-3. Divide zones according to model's performance from Step 2. 
+3. Divide zones according to the model's performance from Step 2. 
 ```bash
 python -m zpd.zones --dataset=<"gsm8k/ez_stance">
 ```
@@ -34,19 +34,19 @@ python -m zpd.zones --dataset=<"gsm8k/ez_stance">
 1. Prepare the data for IRT
 
 ```bash
-python -m pred.irt_data --dataset=<"dataset"> --job="gen_splits"		# convert data to IRT format and create splits
+python -m pred.irt_data --dataset=<"dataset"> --job="gen_splits"	# convert data to IRT format and create splits
 python -m pred.irt_data --dataset=<"dataset"> --job="gen_embeddings" 	# embeddings for MultiIRT
 ```
 
 2. Train IRT models
 ```bash
-	python -m pred.irt_model --dataset="dataset" 			# gsm8k or ezstance 
-						 --use_answer="True"  
-						 --irt_model_type=<"irt_model">  	# [1pl, 2pl, mirt]  
-						 --enable_gamma='True'   			# True=icl_irt
-						 --eval_metrics='roc_auc'  			# [roc_auc, f1_score, accuracy]  
-						 --trait_dim=32  					# only for multi-dimension IRT  
-						 --job="train"  					# [train, eval]
+python -m pred.irt_model --dataset="dataset" 		 # gsm8k or ezstance
+			 --use_answer="True"		 # whether to use answer as IRT feature
+			 --irt_model_type=<"irt_model">  # [1pl, 2pl, mirt]  
+			 --enable_gamma='True'   	 # True=icl_irt
+			 --eval_metrics='roc_auc'  	 # [roc_auc, f1_score, accuracy]  
+			 --trait_dim=32  		 # only for multi-dimension IRT  
+			 --job="train"  		 # [train, eval]
 ```
 
 ---
@@ -65,8 +65,8 @@ Arguments are specified in the `get_adaptive_icl()` function.
 
 ```bash
 python -m app.curriculum.train 	--model_name 	# model to train.
-								--dataset		# gsm8k or ez_stance
-								--curriculum  	# [zpd, random]
+				--dataset	# gsm8k or ez_stance
+				--curriculum  	# [zpd, random]
 ```
 Run `zpd/inference.py` (Step 2) and `zpd/evaluate.py` to evaluate its performance. 
 
