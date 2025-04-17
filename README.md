@@ -51,7 +51,7 @@ python -m pred.irt_model --dataset="dataset" 		 # gsm8k or ezstance
 
 ---
 
-## Use Case
+## Applications
 We demonstrate two applications of our framework in the paper. 
 
 1. Selective ICL
