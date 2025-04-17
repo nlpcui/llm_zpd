@@ -6,7 +6,7 @@ import sys
 from tqdm import tqdm
 import torch
 
-project_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../"))
+project_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../"))
 if project_path not in sys.path:
     sys.path.append(project_path)
 import argparse
@@ -16,7 +16,7 @@ from zpd.dataset import read_ice_mapping, GSM8KProcessor, EZStanceProcessor
 from transformers import AutoTokenizer
 from zpd.eval import MathEvaluator, EZStanceEvaluator
 from common.utils import to_md5, set_logging
-from irt_model import MultiIRT
+from pred.irt_model import MultiIRT
 
 model2_id = {'meta-llama/Llama-2-7b-hf': 0, 'meta-llama/Llama-2-7b-chat-hf': 1, 'meta-llama/Llama-2-13b-hf': 2, 'meta-llama/Llama-2-13b-chat-hf': 3, 'meta-llama/Meta-Llama-3-8B-Instruct': 4, 'meta-llama/Meta-Llama-3-8B': 5, 'meta-llama/Meta-Llama-3-70B-Instruct': 6, 'meta-llama/Meta-Llama-3-70B': 7}
 
